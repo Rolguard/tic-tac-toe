@@ -3,9 +3,14 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.GridLayout;
 import java.util.List;
 
 public class App {
+    private static final String NOUGHT_IMAGE_PATH = "images/nought2.png";
+    private static final String CROSS_IMAGE_PATH = "images/cross2.png";
+    private static final double ENTITY_IMAGE_SCALE = 0.2;
+
     public static void main(String[] args) throws Exception {
         FlatSolarizedLightIJTheme.setup();
         // FlatLightLaf.setup();
@@ -20,18 +25,26 @@ public class App {
         frame.setLocationRelativeTo(null);
 
         JButton button = new JButton("Click me!");
-        Entity nought = new Entity(100, 100, "images/nought2.png", 0.4);
-        Entity nought2 = new Entity(500, 100, "images/nought2.png", 0.4);
-        Entity nought3 = new Entity(500, 450, "images/nought2.png", 0.4);
-        Entity nought4 = new Entity(500, 800, "images/nought2.png", 0.4);
+        Entity nought = new Entity(100, 100, NOUGHT_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity nought2 = new Entity(500, 100, NOUGHT_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity nought3 = new Entity(500, 450, NOUGHT_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity nought4 = new Entity(500, 800, NOUGHT_IMAGE_PATH, ENTITY_IMAGE_SCALE);
 
-        Entity cross = new Entity(300, 100, "images/cross2.png", 0.4);
-        Entity cross2 = new Entity(100, 450, "images/cross2.png", 0.4);
-        Entity cross3 = new Entity(300, 450, "images/cross2.png", 0.4);
-        Entity cross4 = new Entity(100, 800, "images/cross2.png", 0.4);
-        Entity cross5 = new Entity(300, 800, "images/cross2.png", 0.4);
+        Entity cross = new Entity(300, 100, CROSS_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity cross2 = new Entity(100, 450, CROSS_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity cross3 = new Entity(300, 450, CROSS_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity cross4 = new Entity(100, 600, CROSS_IMAGE_PATH, ENTITY_IMAGE_SCALE);
+        Entity cross5 = new Entity(300, 800, CROSS_IMAGE_PATH, ENTITY_IMAGE_SCALE);
 
         Container mainWindowContentPane = frame.getContentPane();
+        // TODO: Use grid layout for tic tac toe entities
+        // Try find out why box layout isn't loading 3 more of the noughts/ crosses
+        // My understanding is that the JLabels should be lined up in a row
+        // But in reality, the nought and crosses are on top of each other
+        // and separated by a large y distance
+        // Turns out the x and y attributes change the position
+        // Even though I haven't implemented any functionality for it
+        // JPanel noughtCrossGrid = new JPanel(new GridLayout())
         mainWindowContentPane.setLayout(new BoxLayout(mainWindowContentPane, BoxLayout.X_AXIS));
         mainWindowContentPane.add(button);
         mainWindowContentPane.add(nought);

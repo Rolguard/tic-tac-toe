@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -8,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 public class Entity extends JLabel implements MouseListener {
     private int x;
@@ -21,7 +24,11 @@ public class Entity extends JLabel implements MouseListener {
                 (int) (icon.getIconWidth() * scale),
                 (int) (icon.getIconHeight() * scale),
                 Image.SCALE_DEFAULT);
+
         super.setIcon(new ImageIcon(scaledImage));
+        Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+        super.setBorder(blackLine);
+
         this.x = x;
         this.y = y;
     }
